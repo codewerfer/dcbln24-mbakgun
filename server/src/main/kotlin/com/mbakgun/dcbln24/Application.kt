@@ -12,7 +12,9 @@ import io.ktor.server.sse.SSE
 import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.pingPeriod
 import io.ktor.server.websocket.timeout
-import java.time.Duration
+import kotlin.time.Duration.Companion.seconds
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 fun main() {
     embeddedServer(
@@ -25,8 +27,8 @@ fun main() {
 fun Application.module() {
     install(ContentNegotiation) { json() }
     install(WebSockets) {
-        pingPeriod = Duration.ofSeconds(30)
-        timeout = Duration.ofSeconds(60)
+        pingPeriod = 30.seconds // Duration.ofSeconds(30)
+        timeout =  60.toDuration(DurationUnit.SECONDS) //Duration.ofSeconds(60)
     }
     install(SSE)
 

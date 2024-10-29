@@ -3,15 +3,16 @@ package com.mbakgun.dcbln24
 import data.source.remote.model.MessageResponse
 import io.ktor.http.ContentType.Text.Html
 import io.ktor.server.response.respondText
-import io.ktor.server.routing.RootRoute
-import io.ktor.server.routing.get
+import io.ktor.server.routing.*
 import io.ktor.server.sse.sse
 import io.ktor.sse.ServerSentEvent
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-fun RootRoute.routingSSE() {
+fun Route.routingSSE() {
     sse("/sse") {
         while (true) {
             val messageResponse = MessageResponse("data: ${System.currentTimeMillis()}")

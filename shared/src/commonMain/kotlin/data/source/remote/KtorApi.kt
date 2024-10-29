@@ -10,7 +10,7 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.plugins.sse.SSE
-import io.ktor.client.plugins.websocket.WebSockets
+import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.http.path
 import io.ktor.serialization.kotlinx.json.json
@@ -63,7 +63,7 @@ private val SSEClient = HttpClient {
 
 private val WSClient = HttpClient(CIO) {
     install(WebSockets) {
-        pingInterval = 20_000
+        pingIntervalMillis = 20_000
     }
     install(Logging) {
         logger = Logger.SIMPLE

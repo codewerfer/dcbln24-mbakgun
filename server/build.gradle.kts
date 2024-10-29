@@ -21,3 +21,6 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.server.sse)
 }
+repositories {
+    mavenCentral()
+}
